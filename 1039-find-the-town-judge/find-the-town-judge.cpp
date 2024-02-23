@@ -1,24 +1,19 @@
 class Solution {
 public:
     int findJudge(int n, vector<vector<int>>& trust) {
-        if(n==1){
-            return 1;
-        }
-       map<int,int> m;
-       for(auto i: trust){
-           m[i[1]]++;
-       }
-       
-       for(auto i :m){
-           if(i.second==n-1){
-               for(auto x:trust){
-                   if(x[0]==i.first){
-                       return -1;
-                   }
-               }
-              return i.first;
-           }
-       }
-       return -1;
+        
+      vector<int> trust_to(n+1,0);
+      vector<int> trusted_by(n+1,0);   
+      for(auto i: trust){
+          trust_to[i[0]]++;
+          trusted_by[i[1]]++;
+      }
+      int ans=-1;
+      for(int i=1;i<=n;i++){
+          if(trust_to[i]==0 && trusted_by[i]==n-1){
+              ans=i;
+          }
+      }
+      return ans;
     }
 };
