@@ -1,39 +1,43 @@
-class Solution {
-public:
-        
-    bool help(int i,int op,string s,vector<vector<int>>&dp){
-        if(i==s.size()){
-            return op==0;
-        }
-        if(op<0){
-            return false;
-        }
-        if(dp[i][op]!=-1){
-            return dp[i][op];
-        }
-        bool isvalid=false;
-        if(s[i]=='*'){
-            isvalid|=help(i+1,op+1,s,dp);
-            isvalid|=help(i+1,op,s,dp);
-            if(op>0){
-                isvalid|=help(i+1,op-1,s,dp);
+    class Solution {
+    public:
+            
+     
+        bool checkValidString(string s) {
+            int n=s.size();
+            stack<int > s1;
+            stack<int> s2;
+            for(int i=0;i<n;i++){
+                if(s[i]=='*'){
+                    s2.push(i);
+                }
+                else if(s[i]=='('){
+                    s1.push(i);
+                }
+                else{
+                    if(!s1.empty()){
+                        s1.pop();
+                    }
+                    else if(!s2.empty()){
+                        s2.pop();
+                    }
+                    else{
+                        return false;
+                    }
+                }
             }
-        }
-        else{
-            if(s[i]=='('){
-                isvalid=help(i+1,op+1,s,dp);
+            if(!s1.empty()){
+                while(!s2.empty()){
+                    if( !s1.empty() && s2.top()>s1.top()){
+                        s1.pop();
+                        s2.pop();                    }
+                        else{
+                    s2.pop();
+                }
+
+                       
+                }
             }
-            else if(op>0){
-                isvalid=help(i+1,op-1,s,dp);
-            }
+            return s1.size()==0;
+           
         }
-        return dp[i][op]=isvalid;
-    }
-    bool checkValidString(string s) {
-        int n=s.size();
-        vector<vector<int>> dp(n,vector<int>(n,-1));
-       
-        
-        return help(0,0,s,dp);
-    }
-};
+    };
