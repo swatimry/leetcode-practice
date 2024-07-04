@@ -11,21 +11,24 @@
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ListNode *anshead=new ListNode(-1);
-        ListNode *currnode=anshead;int curr=0;
-        head=head->next;
-        while(head!=NULL){
-            
-            if(head->val!=0){
-                curr+=head->val;
-            }else{
-                ListNode *temp=new ListNode(curr);
-                currnode->next=temp;
-                currnode=currnode->next;
+        ListNode *start=head;
+        ListNode *prevzero=head;
+        ListNode *temp=head->next;int curr=0;
+        
+        while(temp!=NULL){
+         
+            if(temp->val!=0){
+                curr+=temp->val;
+            }
+            else{
+               prevzero->next=temp;
+              temp->val=curr;
+              prevzero=temp;
+           
                 curr=0;
             }
-            head=head->next;
+            temp=temp->next;
         }
-        return anshead->next;
+        return start->next;
     }
 };
