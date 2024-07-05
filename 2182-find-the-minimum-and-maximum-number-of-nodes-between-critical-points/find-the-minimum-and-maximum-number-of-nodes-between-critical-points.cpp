@@ -29,7 +29,7 @@ public:
             return ans;
         }
         vector<int> ans;
-       sort(points.begin(),points.end());
+      
        int mini=INT_MAX,maxi=INT_MIN;
        for(int i=0;i<points.size()-1;i++){
         mini=min(mini,points[i+1]-points[i]);
