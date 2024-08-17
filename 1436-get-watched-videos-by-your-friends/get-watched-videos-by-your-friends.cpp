@@ -25,18 +25,15 @@ public:
            }
           
         }
-        vector<pair<string, int>> videoFreq(freqatlevel.begin(), freqatlevel.end());
-        sort(videoFreq.begin(), videoFreq.end(), [](const pair<string, int>& a, const pair<string, int>& b) {
-            if (a.second == b.second) {
-                return a.first < b.first;
-            }
-            return a.second < b.second;
-        });
-
-        vector<string> ans;
-        for (const auto& p : videoFreq) {
-            ans.push_back(p.first);
+        
+         vector<pair<int,string>>v;
+        for(auto it:freqatlevel){
+            v.push_back({it.second,it.first});
         }
+        sort(v.begin(),v.end());
+        vector<string> ans;
+        for(auto it:v) ans.push_back(it.second);
+        
         return ans;
         
         
