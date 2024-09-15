@@ -10,19 +10,19 @@ public:
         m[currstate]=-1;
         for(int i=0;i<n;i++){
             if(s[i]=='a'){
-                temp[0]=(temp[0]+1)%2;
+                temp[0]=temp[0]^1;
             }
             else if(s[i]=='e'){
-                temp[1]=(temp[1]+1)%2;
+                temp[1]=temp[1]^1;
             }
             else if(s[i]=='i'){
-                temp[2]=(temp[2]+1)%2;
+                temp[2]=(temp[2]^1);
             }
             else if(s[i]=='o'){
-                temp[3]=(temp[3]+1)%2;
+                temp[3]=temp[3]^1;
             }
             else if(s[i]=='u'){
-                temp[4]=(temp[4]+1)%2;
+                temp[4]=(temp[4]^1);
             }
             currstate="";
             for(int j=0;j<5;j++){
