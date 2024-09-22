@@ -1,16 +1,16 @@
 class Solution {
 public:
 
-    vector<int> calc(string expression){
+    vector<int> calc(string expression,int s,int e){
 
       
         vector<int> ans;
      
-        for(int i=0;i<expression.size();i++){
+        for(int i=s;i<=e;i++){
            
             if(expression[i]=='+' || expression[i]=='-' || expression[i]=='*'){
-                 vector<int> left= calc(expression.substr(0,i));
-                 vector<int> right=  calc(expression.substr(i+1)) ;
+                 vector<int> left= calc(expression,s,i-1);
+                 vector<int> right=  calc(expression,i+1,e) ;
                  for(int j=0;j<left.size();j++){
                     for(int k=0;k<right.size();k++){
                        
@@ -30,7 +30,9 @@ public:
             
         }
         if(ans.empty()){
-            ans.push_back(stoi(expression));
+            string number=expression.substr(s,e+1);
+            cout<<number;
+            ans.push_back(stoi(number));
         }
         return ans;
 
@@ -38,7 +40,7 @@ public:
     vector<int> diffWaysToCompute(string expression) {
         
         int n=expression.size();
-       return  calc(expression);
+       return  calc(expression,0,n-1);
         
     }
 };
