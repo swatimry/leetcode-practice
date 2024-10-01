@@ -13,7 +13,7 @@ public:
         int x=shorter.size();
         string temp=shorter;
         while(x>0){
-            cout<<temp<<endl;
+            
             if(n%x==0 && m%x==0){
                
                 string a="";
