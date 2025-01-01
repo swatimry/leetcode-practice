@@ -14,8 +14,8 @@ public:
         if(s[i]=='0'){
             currzeroes++;
         }
-         int temp= currzeroes+ tot_ones- ones[i];
-         ans=max(temp,ans);
+         
+         ans=max(currzeroes+ tot_ones- ones[i],ans);
        }
        return ans;
     }
