@@ -21,7 +21,7 @@ public:
           
                 if(temp.find(A[i])!=temp.end() && temp.find(B[i])!=temp.end()){
                      ans[i]=ans[i-1]+2;
-                     cout<<"here"<<ans[i];
+                    
                      
                 }
                 if(temp.find(A[i])==temp.end() && temp.find(B[i])==temp.end()){
@@ -29,18 +29,18 @@ public:
                     
                       temp.insert(A[i]);
                       temp.insert(B[i]);
-                       cout<<"here1"<<ans[i];
+                      
                 }
                 else if(temp.find(A[i])==temp.end() && temp.find(B[i])!=temp.end()){
                      ans[i]=ans[i-1]+1;
                       temp.insert(A[i]);
-                      cout<<"here2"<<ans[i];
+                      
                       
                 }
                 else if(temp.find(A[i])!=temp.end() && temp.find(B[i])==temp.end()){
                      ans[i]=ans[i-1]+1;
                       temp.insert(B[i]);
-                      cout<<"here3"<<ans[i];
+                      
                       
                 }
             }
