@@ -9,13 +9,11 @@ public:
         }
         int ones=0;
         for(int i=0;i<n;i++){
-            if(derived[i]==1){
-                ones++;
-            }
+            ones^=derived[i];
         }
-        if(ones&1){
-            return false;
+        if(ones==0){
+            return true;
         }
-        return true;
+        return false;
     }
 };
