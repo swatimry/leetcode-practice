@@ -1,30 +1,27 @@
 class Solution {
 public:
     vector<vector<int>> generate(int numRows) {
-       vector<vector<int>> ans;
-       int dp[numRows+1][numRows+1]; 
+        int n=numRows;
+        if(n==1){
+            return {{1}};
+        }else if(n==2){
+            return {{1},{1,1}};
+        }
+        vector<vector<int>> ans;
+       ans.push_back({1});
+       ans.push_back({1,1});
+       vector<int> prev={1,1};
+        for(int i=1;i<n-1;i++){
+           vector<int> curr;
+           curr.push_back(1);
+       for(int j=0;j<prev.size()-1;j++){
        
-       for(int i=0;i<numRows;i++){
-           for(int j=0;j<=i;j++){
-               if(j==0 || i==j){
-                   dp[i][j]=1;
-               }
-               else {
-                   dp[i][j]=dp[i-1][j-1]+dp[i-1][j];
-               }
-
-           }
+             curr.push_back(prev[j]+prev[j+1]);
        }
-        for(int i=0;i<numRows;i++){
-            vector<int> temp;
-           for(int j=0;j<=i;j++){
-              temp.push_back(dp[i][j]);
-
-           }
-           ans.push_back(temp);
-       }
-       return ans;
-
-
+       curr.push_back(1);
+       ans.push_back(curr);
+       prev=curr;
+        }
+        return ans;
     }
 };
